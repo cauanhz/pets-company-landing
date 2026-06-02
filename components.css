@@ -387,6 +387,7 @@
    ============================================================ */
 @media (max-width: 1080px) {
   .hdr-nav { display: none; }
+  .hdr-cta { display: none; }
   .hdr-burger { display: flex; }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
