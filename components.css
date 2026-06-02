@@ -90,7 +90,7 @@
 
 .hero-badge { display: inline-flex; align-items: center; gap: 9px; font-weight: 700; font-size: 13.5px; padding: 8px 16px 8px 13px; border-radius: 99px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--sh-sm); color: var(--navy); }
 .hero-badge.on-dark { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2); color: #fff; }
-.pulse { width: 9px; height: 9px; border-radius: 50%; background: #25d366; box-shadow: 0 0 0 0 rgba(37,211,102,.6); animation: pulse 2s infinite; flex: none; }
+.pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 0 rgba(193,19,59,.6); animation: pulse 2s infinite; flex: none; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55);} 70% { box-shadow: 0 0 0 10px rgba(37,211,102,0);} 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0);} }
 
 .hero-h1 { font-size: clamp(38px, 5.6vw, 70px); line-height: 1.0; margin-top: 20px; }
@@ -391,7 +391,7 @@
 .f-top:hover { transform: translateY(-3px); }
 .f-call { width: 52px; height: 52px; border-radius: 50%; background: var(--navy); color: #fff; }
 .f-call:hover { transform: scale(1.08); }
-.f-wa { width: auto; height: 58px; border-radius: 99px; padding: 0 20px; gap: 10px; background: #25d366; color: #07351a; font-family: var(--font-body); font-weight: 800; }
+.f-wa { width: auto; height: 58px; border-radius: 99px; padding: 0 20px; gap: 10px; background: var(--red); color: #fff; font-family: var(--font-body); font-weight: 800; box-shadow: var(--sh-red); }
 .f-wa svg { width: 26px; height: 26px; }
 .f-wa:hover { transform: translateY(-3px); }
 .f-wa-label { font-size: 15px; }
