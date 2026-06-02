@@ -230,7 +230,6 @@ function Floating() {
         <a className="f-call" href={"tel:" + BRAND.phoneRaw} aria-label="Ligar"><Icon name="phone" /></a>
         <button className="f-wa" onClick={() => openWhatsApp()} aria-label="WhatsApp">
           <Icon name="whatsapp" />
-          <span className="f-wa-label">Fale conosco</span>
         </button>
       </div>
     </>
