@@ -128,15 +128,17 @@ function WhyUs() {
           Mais que uma clínica, somos um centro completo de cuidado e bem-estar para o seu melhor amigo.
         </Reveal>
       </div>
-      <div className="container why-grid">
-        {WHY.map(([ic, title, body], i) => (
-          <Reveal className="why-card" key={title} delay={i * 70}>
-            <span className="why-ic"><Icon name={ic} width="26" height="26" /></span>
-            <h3>{title}</h3>
-            <p>{body}</p>
-            <span className="why-no">{String(i + 1).padStart(2, "0")}</span>
-          </Reveal>
-        ))}
+      <div className="container">
+        <Carousel count={WHY.length} trackClass="why-grid">
+          {WHY.map(([ic, title, body], i) => (
+            <Reveal className="why-card" key={title} delay={i * 70}>
+              <span className="why-ic"><Icon name={ic} width="26" height="26" /></span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+              <span className="why-no">{String(i + 1).padStart(2, "0")}</span>
+            </Reveal>
+          ))}
+        </Carousel>
       </div>
     </section>
   );
@@ -167,17 +169,19 @@ function Services() {
           Tudo o que seu pet precisa em um só lugar — atendimento clínico, estética e transporte.
         </Reveal>
       </div>
-      <div className="container services-grid">
-        {SERVICES.map(([ic, title, body], i) => (
-          <Reveal className="svc-card" key={title} delay={(i % 3) * 80}>
-            <span className="svc-ic"><Icon name={ic} width="24" height="24" /></span>
-            <h3>{title}</h3>
-            <p>{body}</p>
-            <button className="svc-link" onClick={() => openWhatsApp("Tenho interesse em: " + title)}>
-              Saiba mais <Icon name="arrow" width="17" height="17" />
-            </button>
-          </Reveal>
-        ))}
+      <div className="container">
+        <Carousel count={SERVICES.length} trackClass="services-grid">
+          {SERVICES.map(([ic, title, body], i) => (
+            <Reveal className="svc-card" key={title} delay={(i % 3) * 80}>
+              <span className="svc-ic"><Icon name={ic} width="24" height="24" /></span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+              <button className="svc-link" onClick={() => openWhatsApp("Tenho interesse em: " + title)}>
+                Saiba mais <Icon name="arrow" width="17" height="17" />
+              </button>
+            </Reveal>
+          ))}
+        </Carousel>
       </div>
     </section>
   );

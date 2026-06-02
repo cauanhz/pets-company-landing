@@ -186,7 +186,54 @@ const PHOTOS = {
   person4: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80&auto=format&fit=crop",
 };
 
+function Carousel({ children, count, trackClass }) {
+  const [active, setActive] = useState(0);
+  const trackRef = useRef(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const cards = Array.from(track.children);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let best = -1, bestRatio = 0;
+        entries.forEach((e) => {
+          if (e.intersectionRatio > bestRatio) {
+            bestRatio = e.intersectionRatio;
+            best = cards.indexOf(e.target);
+          }
+        });
+        if (best !== -1 && bestRatio > 0.4) setActive(best);
+      },
+      { root: track, threshold: [0, 0.5, 1] }
+    );
+    cards.forEach((c) => observer.observe(c));
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollTo = (i) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.children[i];
+    if (card) track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+  };
+
+  return (
+    <div className="carousel-wrap">
+      <div className={"carousel-track " + (trackClass || "")} ref={trackRef}>
+        {children}
+      </div>
+      <div className="carousel-dots">
+        {Array.from({ length: count }).map((_, i) => (
+          <button key={i} className={"cdot" + (i === active ? " active" : "")}
+            onClick={() => scrollTo(i)} aria-label={`Item ${i + 1}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 Object.assign(window, {
   BRAND, openWhatsApp, openAppointment,
-  Icon, Photo, Reveal, useReveal, Counter, PHOTOS,
+  Icon, Photo, Reveal, useReveal, Counter, PHOTOS, Carousel,
 });

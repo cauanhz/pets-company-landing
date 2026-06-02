@@ -202,6 +202,12 @@
    Testimonials · Location · Final CTA · Footer · Floating
    ============================================================ */
 
+/* ---------------- CAROUSEL ---------------- */
+.carousel-wrap { position: relative; }
+.carousel-dots { display: none; justify-content: center; gap: 8px; margin-top: 24px; }
+.cdot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); border: none; padding: 0; cursor: pointer; transition: background .2s, transform .2s, width .2s; }
+.cdot.active { background: var(--red); width: 22px; border-radius: 99px; }
+
 /* ---------------- WHY US ---------------- */
 .why-section { background: var(--bg); }
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; }
@@ -387,8 +393,6 @@
   .hdr-cta { display: none; }
   .hdr-actions { margin-left: auto; }
   .hdr-burger { display: flex; }
-  .why-grid { grid-template-columns: repeat(2, 1fr); }
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 34px; }
   .ft-brand { grid-column: 1 / -1; }
 }
@@ -396,6 +400,25 @@
 @media (max-width: 860px) {
   .hero-split, .hero-bento, .appt-grid, .taxi-grid, .prev-grid, .loc-grid {
     grid-template-columns: 1fr; gap: 40px;
+  }
+  .carousel-dots { display: flex; }
+  .carousel-track.why-grid,
+  .carousel-track.services-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 14px;
+    margin-top: 32px;
+  }
+  .carousel-track.why-grid::-webkit-scrollbar,
+  .carousel-track.services-grid::-webkit-scrollbar { display: none; }
+  .carousel-track.why-grid > *,
+  .carousel-track.services-grid > * {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+    min-width: 0;
   }
   .hero-section { padding-top: 110px; }
   .hero-split .hero-visual, .hero-bento .bento { max-width: 520px; margin-inline: auto; width: 100%; }
@@ -415,7 +438,6 @@
 }
 
 @media (max-width: 560px) {
-  .why-grid, .services-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .taxi-benefits { grid-template-columns: 1fr; }
   .hero-mini-stats { gap: 20px; }
