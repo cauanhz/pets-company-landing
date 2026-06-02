@@ -406,18 +406,21 @@
   .carousel-track.services-grid {
     display: flex;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     gap: 14px;
     margin-top: 32px;
+    padding-inline: 9%;
+    touch-action: pan-x;
   }
   .carousel-track.why-grid::-webkit-scrollbar,
   .carousel-track.services-grid::-webkit-scrollbar { display: none; }
   .carousel-track.why-grid > *,
   .carousel-track.services-grid > * {
     flex: 0 0 82%;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
     min-width: 0;
   }
   .hero-section { padding-top: 110px; }
