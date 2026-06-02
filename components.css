@@ -116,8 +116,8 @@
 .hv-cat { position: absolute; width: 42%; aspect-ratio: 1/1; right: 0; bottom: 6%; border-radius: 26px 26px 26px 60px; box-shadow: var(--sh-lg); border: 5px solid #fff; }
 .hv-badge { position: absolute; top: 4%; left: 0; width: 70px; height: 70px; border-radius: 20px; overflow: hidden; box-shadow: var(--sh-navy); border: 4px solid #fff; z-index: 3; }
 .hv-badge img { width: 100%; height: 100%; object-fit: cover; }
-.fc-a { top: 18%; right: -4%; animation: bob 5s ease-in-out infinite; }
-.fc-b { bottom: 30%; left: -8%; animation: bob 5.6s ease-in-out infinite .4s; }
+.fc-a { top: 18%; right: -2%; animation: bob 5s ease-in-out infinite; }
+.fc-b { bottom: 30%; left: -2%; animation: bob 5.6s ease-in-out infinite .4s; }
 @keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-10px);} }
 .no-motion .fc-a, .no-motion .fc-b { animation: none; }
 
