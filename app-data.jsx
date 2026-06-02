@@ -203,7 +203,7 @@ function Carousel({ children, count, trackClass }) {
         const dist = Math.abs(c.offsetLeft + c.offsetWidth / 2 - center);
         if (dist < bestDist) { bestDist = dist; best = c; }
       });
-      track.scrollTo({ left: best.offsetLeft - track.offsetLeft, behavior: "smooth" });
+      track.scrollTo({ left: best.offsetLeft - (track.offsetWidth - best.offsetWidth) / 2, behavior: "smooth" });
     };
 
     const onTouchStart = (e) => {
@@ -261,7 +261,7 @@ function Carousel({ children, count, trackClass }) {
     const track = trackRef.current;
     if (!track) return;
     const card = track.children[i];
-    if (card) track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+    if (card) track.scrollTo({ left: card.offsetLeft - (track.offsetWidth - card.offsetWidth) / 2, behavior: "smooth" });
   };
 
   return (
