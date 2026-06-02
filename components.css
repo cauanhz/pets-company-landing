@@ -163,7 +163,7 @@
 .marquee-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); margin: 0 24px; }
 
 /* ---------------- APPOINTMENT ---------------- */
-.appt-section { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-800) 100%); overflow: hidden; }
+.appt-section { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-800) 100%); }
 .appt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(34px, 5vw, 70px); align-items: center; position: relative; z-index: 2; }
 .appt-perks { display: flex; flex-direction: column; gap: 13px; margin-top: 28px; }
 .appt-perks span { display: inline-flex; align-items: center; gap: 11px; font-weight: 600; font-size: 15.5px; color: rgba(255,255,255,.9); }
@@ -414,7 +414,8 @@
   .hero-split, .hero-bento, .appt-grid, .taxi-grid, .prev-grid, .loc-grid {
     grid-template-columns: 1fr; gap: 40px;
   }
-  .appt-card { width: 100%; align-self: stretch; }
+  .appt-grid { align-items: start; justify-items: stretch; }
+  .appt-card { width: 100%; box-sizing: border-box; }
   .carousel-dots { display: flex; }
   .carousel-track.why-grid,
   .carousel-track.services-grid {
