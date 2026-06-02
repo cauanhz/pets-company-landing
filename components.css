@@ -420,10 +420,8 @@
   .carousel-track.why-grid,
   .carousel-track.services-grid {
     display: flex;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     gap: 14px;
     margin-top: 32px;
@@ -435,7 +433,6 @@
   .carousel-track.why-grid > *,
   .carousel-track.services-grid > * {
     flex: 0 0 82%;
-    scroll-snap-align: center;
     min-width: 0;
   }
   .hero-section { padding-top: 110px; }
