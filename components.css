@@ -169,7 +169,7 @@
 .hf-pill-ic svg { color: #ff5277; }
 
 /* pets cutout */
-.hf-pets { position: absolute; bottom: 0; left: 53%; transform: translateX(-50%); width: min(470px, 40%); z-index: 5; pointer-events: none; filter: drop-shadow(0 30px 40px rgba(0,0,0,.4)); }
+.hf-pets { position: absolute; bottom: 0; left: calc(100% - clamp(346px, 33%, 404px) - clamp(28px, 4vw, 64px) * 0.5); transform: translateX(-50%); width: min(470px, 40%); z-index: 5; pointer-events: none; filter: drop-shadow(0 30px 40px rgba(0,0,0,.4)); }
 .hf-pets img { width: 100%; height: auto; display: block; }
 
 /* form card */
