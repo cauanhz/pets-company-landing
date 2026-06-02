@@ -11,6 +11,36 @@ const SERVICES_OPTS = [
   "Exames", "Check-up", "TaxiDog", "Outro",
 ];
 
+function CustomSelect({ value, onChange, options }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    const close = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener("mousedown", close);
+    document.addEventListener("touchstart", close);
+    return () => { document.removeEventListener("mousedown", close); document.removeEventListener("touchstart", close); };
+  }, []);
+  return (
+    <div className={"custom-select" + (open ? " open" : "")} ref={ref}>
+      <button type="button" className="cs-trigger" onClick={() => setOpen((o) => !o)}>
+        <span>{value}</span>
+        <Icon name="chevron" width="18" height="18" />
+      </button>
+      {open && (
+        <div className="cs-dropdown">
+          {options.map((opt) => (
+            <button key={opt} type="button" className={"cs-option" + (opt === value ? " active" : "")}
+              onClick={() => { onChange(opt); setOpen(false); }}>
+              {opt}
+              {opt === value && <Icon name="check" width="15" height="15" />}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function maskPhone(v) {
   const d = v.replace(/\D/g, "").slice(0, 11);
   if (d.length <= 2) return d.length ? `(${d}` : "";
@@ -75,12 +105,7 @@ function Appointment() {
             </label>
             <label className="fld">
               <span>Serviço desejado</span>
-              <div className="select-wrap">
-                <select value={form.servico} onChange={(e) => set("servico", e.target.value)}>
-                  {SERVICES_OPTS.map((s) => <option key={s}>{s}</option>)}
-                </select>
-                <Icon name="chevron" width="18" height="18" />
-              </div>
+              <CustomSelect value={form.servico} onChange={(v) => set("servico", v)} options={SERVICES_OPTS} />
             </label>
 
             <label className={"taxi-check" + (form.taxidog ? " on" : "")}>
