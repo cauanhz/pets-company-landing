@@ -193,25 +193,46 @@ function Carousel({ children, count, trackClass }) {
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
-    let startX = 0, startY = 0, direction = null;
+    let startX = 0, startY = 0, prevX = 0, direction = null;
+
+    const snapToNearest = () => {
+      const cards = Array.from(track.children);
+      const center = track.scrollLeft + track.offsetWidth / 2;
+      let best = cards[0], bestDist = Infinity;
+      cards.forEach((c) => {
+        const dist = Math.abs(c.offsetLeft + c.offsetWidth / 2 - center);
+        if (dist < bestDist) { bestDist = dist; best = c; }
+      });
+      track.scrollTo({ left: best.offsetLeft - track.offsetLeft, behavior: "smooth" });
+    };
+
     const onTouchStart = (e) => {
-      startX = e.touches[0].clientX;
+      startX = prevX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
       direction = null;
     };
     const onTouchMove = (e) => {
+      const x = e.touches[0].clientX;
       if (direction === null) {
-        const dx = Math.abs(e.touches[0].clientX - startX);
+        const dx = Math.abs(x - startX);
         const dy = Math.abs(e.touches[0].clientY - startY);
         if (dx > 5 || dy > 5) direction = dx > dy ? "h" : "v";
       }
-      if (direction === "h") e.preventDefault();
+      if (direction === "h") {
+        e.preventDefault();
+        track.scrollLeft += prevX - x;
+      }
+      prevX = x;
     };
+    const onTouchEnd = () => { if (direction === "h") snapToNearest(); };
+
     track.addEventListener("touchstart", onTouchStart, { passive: true });
     track.addEventListener("touchmove", onTouchMove, { passive: false });
+    track.addEventListener("touchend", onTouchEnd, { passive: true });
     return () => {
       track.removeEventListener("touchstart", onTouchStart);
       track.removeEventListener("touchmove", onTouchMove);
+      track.removeEventListener("touchend", onTouchEnd);
     };
   }, []);
 
