@@ -377,10 +377,7 @@
 .f-wa:hover { transform: translateY(-3px); }
 .f-wa-label { font-size: 15px; }
 
-.mobile-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 79; display: none; gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(255,255,255,.94); backdrop-filter: blur(12px); border-top: 1px solid var(--line); box-shadow: 0 -8px 24px -12px rgba(16,42,82,.2); }
-.mobile-cta a, .mobile-cta button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 14px; font-family: var(--font-body); font-weight: 800; font-size: 14.5px; border: none; }
-.mc-call { flex: 0 0 auto; padding: 14px 18px; background: var(--navy); color: #fff; }
-.mc-wa { flex: 1; padding: 14px; background: #25d366; color: #07351a; }
+
 
 /* ============================================================
    RESPONSIVE
@@ -412,8 +409,7 @@
   .hc-photos { gap: 10px; }
   .hcp-1, .hcp-3 { display: none; }
   .hcp-2 { width: 70%; }
-  .mobile-cta { display: flex; }
-  .floaters { bottom: 86px; }
+  .floaters { bottom: 24px; }
   .f-wa-label { display: none; }
   .f-wa { width: 58px; padding: 0; }
 }

@@ -233,11 +233,6 @@ function Floating() {
           <span className="f-wa-label">Fale conosco</span>
         </button>
       </div>
-      {/* mobile sticky CTA bar */}
-      <div className="mobile-cta">
-        <a href={"tel:" + BRAND.phoneRaw} className="mc-call"><Icon name="phone" width="20" height="20" /> Ligar</a>
-        <button className="mc-wa" onClick={() => openWhatsApp()}><Icon name="whatsapp" width="20" height="20" /> Agendar no WhatsApp</button>
-      </div>
     </>
   );
 }
