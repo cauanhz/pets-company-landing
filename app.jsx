@@ -56,8 +56,8 @@ function App() {
 
       <TweaksPanel>
         <TweakSection label="Hero" />
-        <TweakRadio label="Estilo do hero" value={t.heroVariant}
-          options={["split", "centered", "bento"]}
+        <TweakSelect label="Estilo do hero" value={t.heroVariant}
+          options={["form", "split", "centered", "bento"]}
           onChange={(v) => setTweak("heroVariant", v)} />
         <TweakSection label="Tipografia & cor" />
         <TweakSelect label="Fonte dos títulos" value={t.headingFont}

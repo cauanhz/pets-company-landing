@@ -271,7 +271,111 @@ function HeroBento() {
   );
 }
 
+/* Variant D — Reference: navy stage, pets cutout center, booking form right */
+const HF_SERVICES = ["Consulta Veterinária", "Emergência", "Banho & Tosa", "Vacinação", "Exames", "Check-up", "TaxiDog", "Outro"];
+const HF_PILLS = [
+  ["clock", "Clínica 24h"],
+  ["shield", "Emergências"],
+  ["van", "Pet Taxi"],
+  ["scissors", "Banho & Tosa"],
+  ["activity", "Medicina Preventiva"],
+];
+
+function HeroFormCard() {
+  const [form, setForm] = useState({ nome: "", telefone: "", servico: "", taxidog: true });
+  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const submit = (e) => { e.preventDefault(); openAppointment({ ...form, servico: form.servico || "Consulta Veterinária" }); };
+  return (
+    <form className="hf-card" onSubmit={submit}>
+      <div className="hf-card-head">
+        <span className="hf-card-ic"><Icon name="sparkles" width="20" height="20" /></span>
+        <strong>Agende em segundos</strong>
+      </div>
+      <label className="hf-fld">
+        <span>Nome completo</span>
+        <input type="text" required placeholder="Digite seu nome" value={form.nome}
+          onChange={(e) => set("nome", e.target.value)} />
+      </label>
+      <label className="hf-fld">
+        <span>WhatsApp</span>
+        <input type="tel" required placeholder="(31) 9 0000-0000" value={form.telefone}
+          onChange={(e) => set("telefone", e.target.value)} />
+      </label>
+      <label className="hf-fld">
+        <span>Serviço desejado</span>
+        <div className="hf-select">
+          <select value={form.servico} onChange={(e) => set("servico", e.target.value)}>
+            <option value="" disabled>Selecione o serviço</option>
+            {HF_SERVICES.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+          <Icon name="chevron" width="18" height="18" />
+        </div>
+      </label>
+      <label className={"hf-check" + (form.taxidog ? " on" : "")}>
+        <input type="checkbox" checked={form.taxidog} onChange={(e) => set("taxidog", e.target.checked)} />
+        <span className="hf-box"><Icon name="check" width="13" height="13" /></span>
+        <span>Desejo transporte (busca e retorno) para meu pet.</span>
+      </label>
+      <button type="submit" className="btn btn-primary btn-block btn-lg hf-submit">
+        <Icon name="whatsapp" /> Agendar via WhatsApp
+      </button>
+      <p className="hf-secure"><Icon name="shield" width="15" height="15" /> Seus dados estão protegidos</p>
+    </form>
+  );
+}
+
+function HeroForm() {
+  return (
+    <div className="hero hero-form">
+      <div className="hf-copy">
+        <Reveal as="h1" className="hero-h1 hf-h1">
+          <span className="hl gold">24h</span> de cuidado veterinário para quem faz parte da sua família. <Icon name="paw" className="hf-paw" width="42" height="42" />
+        </Reveal>
+        <Reveal as="p" className="hero-lead light hf-lead" delay={80}>
+          Clínica veterinária 24h, emergências, consultas, banho &amp; tosa, exames e o exclusivo
+          serviço Pet Taxi, que leva e traz seu pet com segurança e carinho.
+        </Reveal>
+        <Reveal className="hf-ctas" delay={140}>
+          <button className="btn btn-primary btn-lg" onClick={() => openWhatsApp()}>
+            <Icon name="whatsapp" /> Agendar pelo WhatsApp
+          </button>
+          <a className="btn btn-ghost btn-lg on-navy" href={"tel:" + BRAND.phoneRaw}>
+            <Icon name="phone" /> Ligar agora
+          </a>
+        </Reveal>
+        <Reveal className="hf-pills" delay={200}>
+          {HF_PILLS.map(([ic, label]) => (
+            <span className="hf-pill" key={label}>
+              <span className="hf-pill-ic"><Icon name={ic} width="20" height="20" /></span>
+              {label}
+            </span>
+          ))}
+        </Reveal>
+      </div>
+
+      <Reveal className="hf-pets" delay={120}>
+        <img src="assets/hero-pets.png" alt="Cão e gato felizes" />
+      </Reveal>
+
+      <Reveal className="hf-form-wrap" delay={160}>
+        <HeroFormCard />
+      </Reveal>
+    </div>
+  );
+}
+
 function Hero({ variant }) {
+  if (variant === "form") {
+    return (
+      <section className="hero-section hv-form" id="top">
+        <div className="paw-field" />
+        <div className="hero-bg-orbs" aria-hidden="true">
+          <span className="orb orb-1" /><span className="orb orb-2" />
+        </div>
+        <div className="container"><HeroForm /></div>
+      </section>
+    );
+  }
   return (
     <section className={"hero-section hv-" + variant} id="top">
       <div className="hero-bg-orbs" aria-hidden="true">
