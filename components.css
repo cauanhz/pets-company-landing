@@ -414,8 +414,8 @@
   .hero-split, .hero-bento, .appt-grid, .taxi-grid, .prev-grid, .loc-grid {
     grid-template-columns: 1fr; gap: 40px;
   }
-  .appt-grid { align-items: start; justify-items: stretch; }
-  .appt-card { width: 100%; box-sizing: border-box; }
+  .appt-grid { display: flex; flex-direction: column; align-items: stretch; }
+  .appt-card { width: 100%; }
   .carousel-dots { display: flex; }
   .carousel-track.why-grid,
   .carousel-track.services-grid {
