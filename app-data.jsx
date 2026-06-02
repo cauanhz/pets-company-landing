@@ -29,15 +29,13 @@ function openWhatsApp(extra) {
 }
 
 function openAppointment({ nome, telefone, servico, taxidog }) {
-  // Compose the message per the brief (used as the visible confirmation).
-  let msg = "Olá!\n";
-  if (nome) msg += `Meu nome é ${nome}.\n`;
-  if (telefone) msg += `Meu telefone é ${telefone}.\n`;
-  msg += `\nGostaria de agendar:\n${servico || "Consulta Veterinária"}`;
+  let msg = "Olá! Vim pelo site da PETS COMPANY.\n";
+  if (nome) msg += `\nMeu nome é ${nome}.`;
+  if (telefone) msg += `\nMeu telefone é ${telefone}.`;
+  msg += `\n\nGostaria de agendar: ${servico || "Consulta Veterinária"}`;
   if (taxidog) msg += "\n\nTambém gostaria de utilizar o serviço TaxiDog.";
-  msg += "\n\nObrigado!";
-  window.open(BRAND.whatsapp, "_blank", "noopener");
-  return msg;
+  const phone = BRAND.phoneRaw.replace("+", "");
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
 }
 
 /* ---------- Icons (simple stroke set) ---------- */

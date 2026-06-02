@@ -11,6 +11,14 @@ const SERVICES_OPTS = [
   "Exames", "Check-up", "TaxiDog", "Outro",
 ];
 
+function maskPhone(v) {
+  const d = v.replace(/\D/g, "").slice(0, 11);
+  if (d.length <= 2) return d.length ? `(${d}` : "";
+  if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+  if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+}
+
 function Appointment() {
   const [form, setForm] = useState({ nome: "", telefone: "", servico: "Consulta Veterinária", taxidog: false });
   const [sent, setSent] = useState(false);
@@ -62,7 +70,8 @@ function Appointment() {
             <label className="fld">
               <span>WhatsApp</span>
               <input type="tel" required placeholder="(31) 9 0000-0000" value={form.telefone}
-                onChange={(e) => set("telefone", e.target.value)} />
+                onChange={(e) => set("telefone", maskPhone(e.target.value))}
+                maxLength={16} />
             </label>
             <label className="fld">
               <span>Serviço desejado</span>
