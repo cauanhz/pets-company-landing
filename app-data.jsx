@@ -193,6 +193,31 @@ function Carousel({ children, count, trackClass }) {
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
+    let startX = 0, startY = 0, direction = null;
+    const onTouchStart = (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      direction = null;
+    };
+    const onTouchMove = (e) => {
+      if (direction === null) {
+        const dx = Math.abs(e.touches[0].clientX - startX);
+        const dy = Math.abs(e.touches[0].clientY - startY);
+        if (dx > 5 || dy > 5) direction = dx > dy ? "h" : "v";
+      }
+      if (direction === "h") e.preventDefault();
+    };
+    track.addEventListener("touchstart", onTouchStart, { passive: true });
+    track.addEventListener("touchmove", onTouchMove, { passive: false });
+    return () => {
+      track.removeEventListener("touchstart", onTouchStart);
+      track.removeEventListener("touchmove", onTouchMove);
+    };
+  }, []);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
     const cards = Array.from(track.children);
     const observer = new IntersectionObserver(
       (entries) => {
